@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề kiểm tra giữa học kỳ I - Tiếng Anh 6 - Đề 2 (Trực Tuyến)</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #2563eb;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #0284c7;
+      --success: #16a34a;
+      --error: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    header {
+      text-align: center;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--secondary);
+      background: #eff6ff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      border: 1px solid #bfdbfe;
+    }
+
+    h1 {
+      font-size: 1.65rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .meta-info {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .status-bar {
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.06);
+    }
+
+    .progress-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .btn {
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 8px;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-submit {
+      background-color: var(--secondary);
+      color: #fff;
+    }
+
+    .btn-submit:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-reset {
+      background-color: #f1f5f9;
+      color: #475569;
+      margin-left: 8px;
+    }
+
+    .btn-reset:hover {
+      background-color: #e2e8f0;
+    }
+
+    .section-title {
+      background-color: #f1f5f9;
+      color: var(--primary);
+      padding: 12px 18px;
+      border-left: 5px solid var(--secondary);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 36px 0 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .part-title {
+      font-weight: 600;
+      margin: 20px 0 14px 0;
+      font-size: 1rem;
+      color: #334155;
+    }
+
+    .question-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .question-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .question-card.answered {
+      border-left: 4px solid var(--secondary);
+    }
+
+    .question-card.correct {
+      border-left: 5px solid var(--success) !important;
+      background: #f0fdf4 !important;
+    }
+
+    .question-card.wrong {
+      border-left: 5px solid var(--error) !important;
+      background: #fef2f2 !important;
+    }
+
+    .question-stem {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 0.98rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .options-grid.full-width {
+      grid-template-columns: 1fr;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.94rem;
+      background: #fff;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .option-label:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-label input[type="radio"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--secondary);
+      cursor: pointer;
+    }
+
+    .option-label.selected {
+      border-color: var(--secondary);
+      background: #eff6ff;
+      font-weight: 500;
+    }
+
+    .text-input-wrap {
+      margin-top: 10px;
+    }
+
+    .writing-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .writing-input:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .feedback-msg {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .feedback-msg.show {
+      display: block;
+    }
+
+    .feedback-msg.is-correct {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .feedback-msg.is-wrong {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .passage-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 16px 0 20px 0;
+      line-height: 1.85;
+      font-size: 0.98rem;
+    }
+
+    .card-notice {
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      max-width: 420px;
+      margin: 12px 0 16px 0;
+      background: #fff;
+      font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+    }
+
+    .sign-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      border: 4px solid #ef4444;
+      border-radius: 12px;
+      padding: 14px 22px;
+      margin: 12px 0 16px 0;
+      background: #fff;
+      text-align: center;
+    }
+
+    .sign-symbol {
+      width: 90px;
+      height: 90px;
+      border: 7px solid #ef4444;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .sign-slash {
+      position: absolute;
+      width: 90px;
+      height: 7px;
+      background-color: #ef4444;
+      transform: rotate(-45deg);
+    }
+
+    .sign-icons {
+      font-size: 28px;
+      letter-spacing: -2px;
+    }
+
+    .sign-caption {
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.5px;
+      font-size: 1rem;
+      font-family: Arial, sans-serif;
+    }
+
+    .result-banner {
+      display: none;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+      border-radius: 14px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
+    }
+
+    .result-banner.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-score {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 8px 0;
+    }
+
+    .result-details {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      font-size: 1rem;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .result-pill {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    details {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    summary {
+      font-weight: 600;
+      padding: 14px 18px;
+      cursor: pointer;
+      background: #f1f5f9;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary:hover {
+      background: #e2e8f0;
+    }
+
+    .details-inner {
+      padding: 20px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .speaker {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .translation {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 20px 14px;
+      }
+      .status-bar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+      }
+      .btn {
+        flex: 1;
+        text-align: center;
+      }
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">ĐỀ 2 • BÀI LÀM TRỰC TUYẾN</span>
+      <h1>Đề Kiểm Tra Giữa Học Kỳ I - Đề Số 2</h1>
+      <div class="meta-info">NĂM HỌC 2026 - 2027 • MÔN: TIẾNG ANH 6</div>
+      <div class="meta-info">Thời gian làm bài: 60 phút • Tổng điểm: 10.0 (40 câu)</div>
+    </header>
+
+    <div class="status-bar">
+      <div>
+        <span class="progress-text" id="progressCount">Đã làm: 0/40 câu</span>
+      </div>
+      <div>
+        <button class="btn btn-submit" id="submitBtn" onclick="gradeTest()">Nộp bài & Chấm điểm</button>
+        <button class="btn btn-reset" onclick="resetTest()">Làm lại</button>
+      </div>
+    </div>
+
+    <div class="result-banner" id="resultBanner">
+      <h2>KẾT QUẢ BÀI THI</h2>
+      <div class="result-score" id="scoreDisplay">0.0 / 10</div>
+      <div class="result-details">
+        <div class="result-pill" id="correctCount">Số câu đúng: 0 / 40</div>
+        <div class="result-pill" id="percentageDisplay">Tỷ lệ: 0%</div>
+      </div>
+      <p style="margin-top: 14px; font-size: 0.95rem; opacity: 0.9;">Kéo xuống bên dưới để xem đáp án đúng và lời giải chi tiết cho từng câu!</p>
+    </div>
+
+    <form id="quizForm" onsubmit="event.preventDefault();">
+
+      <!-- ================= SECTION A: LISTENING ================= -->
+      <section>
+        <div class="section-title">A. LISTENING (2.0 pts - 0.25 pt / câu)</div>
+
+        <div class="part-title">Part 1. Listen to Minh and Sarah discussing their after-school activities. Choose the best option (A, B, C or D).</div>
+
+        <div class="question-card" id="card-q1">
+          <p class="question-stem">1. What club is Minh going to join on Tuesday afternoon?</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q1" value="A"> A. The Art Club</label>
+            <label class="option-label"><input type="radio" name="q1" value="B"> B. The English Club</label>
+            <label class="option-label"><input type="radio" name="q1" value="C"> C. The Judo Club</label>
+            <label class="option-label"><input type="radio" name="q1" value="D"> D. The Music Club</label>
+          </div>
+          <div class="feedback-msg" id="fb-q1"></div>
+        </div>
+
+        <div class="question-card" id="card-q2">
+          <p class="question-stem">2. Sarah usually plays badminton ________.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q2" value="A"> A. in the schoolyard</label>
+            <label class="option-label"><input type="radio" name="q2" value="B"> B. at the sports centre</label>
+            <label class="option-label"><input type="radio" name="q2" value="C"> C. near her house</label>
+            <label class="option-label"><input type="radio" name="q2" value="D"> D. on the beach</label>
+          </div>
+          <div class="feedback-msg" id="fb-q2"></div>
+        </div>
+
+        <div class="question-card" id="card-q3">
+          <p class="question-stem">3. What time does their judo practice start on Thursday?</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q3" value="A"> A. At 4.00 pm</label>
+            <label class="option-label"><input type="radio" name="q3" value="B"> B. At 4.30 pm</label>
+            <label class="option-label"><input type="radio" name="q3" value="C"> C. At 5.00 pm</label>
+            <label class="option-label"><input type="radio" name="q3" value="D"> D. At 5.30 pm</label>
+          </div>
+          <div class="feedback-msg" id="fb-q3"></div>
+        </div>
+
+        <div class="question-card" id="card-q4">
+          <p class="question-stem">4. What are Minh and Sarah planning to do this Sunday?</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q4" value="A"> A. Have a barbecue in the park</label>
+            <label class="option-label"><input type="radio" name="q4" value="B"> B. Study English at home</label>
+            <label class="option-label"><input type="radio" name="q4" value="C"> C. Go to the cinema</label>
+            <label class="option-label"><input type="radio" name="q4" value="D"> D. Visit their teacher</label>
+          </div>
+          <div class="feedback-msg" id="fb-q4"></div>
+        </div>
+
+        <div class="part-title">Part 2. You will hear a conversation between David and Elena at school. Decide if each sentence is True (T) or False (F).</div>
+
+        <div class="question-card" id="card-q5">
+          <p class="question-stem">5. Elena's brother is very sporty and loves judo.</p>
+          <div class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <label class="option-label"><input type="radio" name="q5" value="T"> T (True)</label>
+            <label class="option-label"><input type="radio" name="q5" value="F"> F (False)</label>
+          </div>
+          <div class="feedback-msg" id="fb-q5"></div>
+        </div>
+
+        <div class="question-card" id="card-q6">
+          <p class="question-stem">6. David is doing his science homework in the library now.</p>
+          <div class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <label class="option-label"><input type="radio" name="q6" value="T"> T (True)</label>
+            <label class="option-label"><input type="radio" name="q6" value="F"> F (False)</label>
+          </div>
+          <div class="feedback-msg" id="fb-q6"></div>
+        </div>
+
+        <div class="question-card" id="card-q7">
+          <p class="question-stem">7. Elena lives in a country house with a big garden.</p>
+          <div class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <label class="option-label"><input type="radio" name="q7" value="T"> T (True)</label>
+            <label class="option-label"><input type="radio" name="q7" value="F"> F (False)</label>
+          </div>
+          <div class="feedback-msg" id="fb-q7"></div>
+        </div>
+
+        <div class="question-card" id="card-q8">
+          <p class="question-stem">8. David and Elena decide to have lunch in the school canteen.</p>
+          <div class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <label class="option-label"><input type="radio" name="q8" value="T"> T (True)</label>
+            <label class="option-label"><input type="radio" name="q8" value="F"> F (False)</label>
+          </div>
+          <div class="feedback-msg" id="fb-q8"></div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION B: USE OF LANGUAGE ================= -->
+      <section>
+        <div class="section-title">B. USE OF LANGUAGE (3.0 pts - 0.25 pt / câu)</div>
+
+        <div class="part-title">Part 1. Pronunciation: Choose the word whose underlined part is pronounced differently.</div>
+
+        <div class="question-card" id="card-q9">
+          <p class="question-stem">Question 9.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q9" value="A"> A. window<u>s</u></label>
+            <label class="option-label"><input type="radio" name="q9" value="B"> B. room<u>s</u></label>
+            <label class="option-label"><input type="radio" name="q9" value="C"> C. clock<u>s</u></label>
+            <label class="option-label"><input type="radio" name="q9" value="D"> D. garden<u>s</u></label>
+          </div>
+          <div class="feedback-msg" id="fb-q9"></div>
+        </div>
+
+        <div class="question-card" id="card-q10">
+          <p class="question-stem">Question 10.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q10" value="A"> A. sh<u>y</u></label>
+            <label class="option-label"><input type="radio" name="q10" value="B"> B. cit<u>y</u></label>
+            <label class="option-label"><input type="radio" name="q10" value="C"> C. bus<u>y</u></label>
+            <label class="option-label"><input type="radio" name="q10" value="D"> D. friendl<u>y</u></label>
+          </div>
+          <div class="feedback-msg" id="fb-q10"></div>
+        </div>
+
+        <div class="part-title">Part 2. Stress: Choose the word that has a different stress pattern.</div>
+
+        <div class="question-card" id="card-q11">
+          <p class="question-stem">Question 11.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q11" value="A"> A. helpful</label>
+            <label class="option-label"><input type="radio" name="q11" value="B"> B. sporty</label>
+            <label class="option-label"><input type="radio" name="q11" value="C"> C. polite</label>
+            <label class="option-label"><input type="radio" name="q11" value="D"> D. modern</label>
+          </div>
+          <div class="feedback-msg" id="fb-q11"></div>
+        </div>
+
+        <div class="part-title">Part 3. Grammar & Vocabulary: Choose the best option A, B, C or D.</div>
+
+        <div class="question-card" id="card-q12">
+          <p class="question-stem">Question 12. Mai has a round face and short black ______.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q12" value="A"> A. ears</label>
+            <label class="option-label"><input type="radio" name="q12" value="B"> B. lips</label>
+            <label class="option-label"><input type="radio" name="q12" value="C"> C. hair</label>
+            <label class="option-label"><input type="radio" name="q12" value="D"> D. eyes</label>
+          </div>
+          <div class="feedback-msg" id="fb-q12"></div>
+        </div>
+
+        <div class="question-card" id="card-q13">
+          <p class="question-stem">Question 13. Listen! Someone ______ the piano in the music room.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q13" value="A"> A. plays</label>
+            <label class="option-label"><input type="radio" name="q13" value="B"> B. is playing</label>
+            <label class="option-label"><input type="radio" name="q13" value="C"> C. are playing</label>
+            <label class="option-label"><input type="radio" name="q13" value="D"> D. play</label>
+          </div>
+          <div class="feedback-msg" id="fb-q13"></div>
+        </div>
+
+        <div class="question-card" id="card-q14">
+          <p class="question-stem">Question 14. There ______ a big clock and three paintings on the living room wall.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q14" value="A"> A. is</label>
+            <label class="option-label"><input type="radio" name="q14" value="B"> B. are</label>
+            <label class="option-label"><input type="radio" name="q14" value="C"> C. have</label>
+            <label class="option-label"><input type="radio" name="q14" value="D"> D. has</label>
+          </div>
+          <div class="feedback-msg" id="fb-q14"></div>
+        </div>
+
+        <div class="question-card" id="card-q15">
+          <p class="question-stem">Question 15. Peter is very ______. He always says "please" and "thank you" to everyone.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q15" value="A"> A. confident</label>
+            <label class="option-label"><input type="radio" name="q15" value="B"> B. polite</label>
+            <label class="option-label"><input type="radio" name="q15" value="C"> C. creative</label>
+            <label class="option-label"><input type="radio" name="q15" value="D"> D. shy</label>
+          </div>
+          <div class="feedback-msg" id="fb-q15"></div>
+        </div>
+
+        <div class="question-card" id="card-q16">
+          <p class="question-stem">Question 16. My brother and I usually ______ badminton in the schoolyard after class.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q16" value="A"> A. do</label>
+            <label class="option-label"><input type="radio" name="q16" value="B"> B. make</label>
+            <label class="option-label"><input type="radio" name="q16" value="C"> C. play</label>
+            <label class="option-label"><input type="radio" name="q16" value="D"> D. have</label>
+          </div>
+          <div class="feedback-msg" id="fb-q16"></div>
+        </div>
+
+        <div class="question-card" id="card-q17">
+          <p class="question-stem">Question 17. Read the note below. What is Peter doing this afternoon?</p>
+          <div class="card-notice">
+            <p>Dear Dad,</p>
+            <p style="margin: 8px 0;">I am doing judo with Phong at the sports centre now.</p>
+            <p>I will return home at 6.00 pm.</p>
+            <p style="text-align: right; margin-top: 10px;"><strong>Peter</strong></p>
+          </div>
+          <div class="options-grid full-width">
+            <label class="option-label"><input type="radio" name="q17" value="A"> A. He is practising judo with his friend.</label>
+            <label class="option-label"><input type="radio" name="q17" value="B"> B. He will come home before 5.00 pm.</label>
+            <label class="option-label"><input type="radio" name="q17" value="C"> C. He is watching TV at Phong's house.</label>
+            <label class="option-label"><input type="radio" name="q17" value="D"> D. He is doing homework in the library.</label>
+          </div>
+          <div class="feedback-msg" id="fb-q17"></div>
+        </div>
+
+        <div class="question-card" id="card-q18">
+          <p class="question-stem">Question 18. What does this school sign mean?</p>
+          <div class="sign-box">
+            <div class="sign-symbol">
+              <span class="sign-icons">📱🤫</span>
+              <div class="sign-slash"></div>
+            </div>
+            <div class="sign-caption">NO MOBILE PHONES IN CLASS</div>
+          </div>
+          <div class="options-grid full-width">
+            <label class="option-label"><input type="radio" name="q18" value="A"> A. Students can play mobile games during class time.</label>
+            <label class="option-label"><input type="radio" name="q18" value="B"> B. Students must turn on their phones during lessons.</label>
+            <label class="option-label"><input type="radio" name="q18" value="C"> C. Students are not allowed to use mobile phones in the classroom.</label>
+            <label class="option-label"><input type="radio" name="q18" value="D"> D. Students should leave their phones on the desks.</label>
+          </div>
+          <div class="feedback-msg" id="fb-q18"></div>
+        </div>
+
+        <div class="question-card" id="card-q19">
+          <p class="question-stem">Question 19. Choose the word CLOSEST in meaning to the underlined word:</p>
+          <p style="margin-bottom: 10px; font-style: italic;">Lan is very <span class="underline">clever</span>. She always answers the teacher's difficult questions quickly.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q19" value="A"> A. intelligent</label>
+            <label class="option-label"><input type="radio" name="q19" value="B"> B. quiet</label>
+            <label class="option-label"><input type="radio" name="q19" value="C"> C. lazy</label>
+            <label class="option-label"><input type="radio" name="q19" value="D"> D. funny</label>
+          </div>
+          <div class="feedback-msg" id="fb-q19"></div>
+        </div>
+
+        <div class="question-card" id="card-q20">
+          <p class="question-stem">Question 20. Choose the word OPPOSITE in meaning to the underlined word:</p>
+          <p style="margin-bottom: 10px; font-style: italic;">The streets in this village are very <span class="underline">quiet</span> and peaceful at night.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q20" value="A"> A. calm</label>
+            <label class="option-label"><input type="radio" name="q20" value="B"> B. modern</label>
+            <label class="option-label"><input type="radio" name="q20" value="C"> C. noisy</label>
+            <label class="option-label"><input type="radio" name="q20" value="D"> D. large</label>
+          </div>
+          <div class="feedback-msg" id="fb-q20"></div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION C: READING ================= -->
+      <section>
+        <div class="section-title">C. READING (2.5 pts - 0.25 pt / câu)</div>
+
+        <div class="part-title">Part 1. Cloze Test: Choose the correct option A, B, C or D to fill in each blank.</div>
+
+        <div class="passage-box">
+          My best friend is Nam. We are classmates in grade 6. Nam is tall and he has short curly <strong>(21)</strong> ______ hair. He is very <strong>(22)</strong> ______ because he creates amazing drawings and models in art class. Right now, Nam and I <strong>(23)</strong> ______ our English homework together in the library. Nam lives with his family in a house <strong>(24)</strong> ______ to the city sports club. In his free time, he usually <strong>(25)</strong> ______ storybooks and practices judo.
+        </div>
+
+        <div class="question-card" id="card-q21">
+          <p class="question-stem">Question 21.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q21" value="A"> A. hair</label>
+            <label class="option-label"><input type="radio" name="q21" value="B"> B. eye</label>
+            <label class="option-label"><input type="radio" name="q21" value="C"> C. arm</label>
+            <label class="option-label"><input type="radio" name="q21" value="D"> D. nose</label>
+          </div>
+          <div class="feedback-msg" id="fb-q21"></div>
+        </div>
+
+        <div class="question-card" id="card-q22">
+          <p class="question-stem">Question 22.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q22" value="A"> A. shy</label>
+            <label class="option-label"><input type="radio" name="q22" value="B"> B. creative</label>
+            <label class="option-label"><input type="radio" name="q22" value="C"> C. sporty</label>
+            <label class="option-label"><input type="radio" name="q22" value="D"> D. lazy</label>
+          </div>
+          <div class="feedback-msg" id="fb-q22"></div>
+        </div>
+
+        <div class="question-card" id="card-q23">
+          <p class="question-stem">Question 23.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q23" value="A"> A. do</label>
+            <label class="option-label"><input type="radio" name="q23" value="B"> B. does</label>
+            <label class="option-label"><input type="radio" name="q23" value="C"> C. are doing</label>
+            <label class="option-label"><input type="radio" name="q23" value="D"> D. is doing</label>
+          </div>
+          <div class="feedback-msg" id="fb-q23"></div>
+        </div>
+
+        <div class="question-card" id="card-q24">
+          <p class="question-stem">Question 24.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q24" value="A"> A. in front</label>
+            <label class="option-label"><input type="radio" name="q24" value="B"> B. next</label>
+            <label class="option-label"><input type="radio" name="q24" value="C"> C. behind</label>
+            <label class="option-label"><input type="radio" name="q24" value="D"> D. between</label>
+          </div>
+          <div class="feedback-msg" id="fb-q24"></div>
+        </div>
+
+        <div class="question-card" id="card-q25">
+          <p class="question-stem">Question 25.</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q25" value="A"> A. read</label>
+            <label class="option-label"><input type="radio" name="q25" value="B"> B. reads</label>
+            <label class="option-label"><input type="radio" name="q25" value="C"> C. is reading</label>
+            <label class="option-label"><input type="radio" name="q25" value="D"> D. to read</label>
+          </div>
+          <div class="feedback-msg" id="fb-q25"></div>
+        </div>
+
+        <div class="part-title">Part 2. Reading Comprehension: Read the text and choose the correct answer A, B, C or D.</div>
+
+        <div class="passage-box">
+          Hello, I am Trung. I live in a lovely country house in a green valley with my parents and younger sister. Around our house, there is a large garden with colourful flowers and apple trees. My favorite room is my bedroom because it has a comfortable study desk right in front of a big window. From my desk, I can see the quiet mountains. Every weekend, my sister and I help our parents water the flowers and clean the house. On Sunday afternoon, our whole family often sits together on the balcony, drinks tea, and chats happily. I love my peaceful home very much.
+        </div>
+
+        <div class="question-card" id="card-q26">
+          <p class="question-stem">Question 26. Who does Trung live with?</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q26" value="A"> A. His grandparents and sister</label>
+            <label class="option-label"><input type="radio" name="q26" value="B"> B. His parents and younger sister</label>
+            <label class="option-label"><input type="radio" name="q26" value="C"> C. His parents and brother</label>
+            <label class="option-label"><input type="radio" name="q26" value="D"> D. His friends</label>
+          </div>
+          <div class="feedback-msg" id="fb-q26"></div>
+        </div>
+
+        <div class="question-card" id="card-q27">
+          <p class="question-stem">Question 27. What is there around Trung's house?</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q27" value="A"> A. A busy shopping centre</label>
+            <label class="option-label"><input type="radio" name="q27" value="B"> B. A large swimming pool</label>
+            <label class="option-label"><input type="radio" name="q27" value="C"> C. A large garden with flowers and apple trees</label>
+            <label class="option-label"><input type="radio" name="q27" value="D"> D. Tall modern flats</label>
+          </div>
+          <div class="feedback-msg" id="fb-q27"></div>
+        </div>
+
+        <div class="question-card" id="card-q28">
+          <p class="question-stem">Question 28. Where is Trung's study desk located?</p>
+          <div class="options-grid full-width">
+            <label class="option-label"><input type="radio" name="q28" value="A"> A. Behind the bookshelf</label>
+            <label class="option-label"><input type="radio" name="q28" value="B"> B. Right in front of a big window</label>
+            <label class="option-label"><input type="radio" name="q28" value="C"> C. Next to the living room television</label>
+            <label class="option-label"><input type="radio" name="q28" value="D"> D. In the kitchen</label>
+          </div>
+          <div class="feedback-msg" id="fb-q28"></div>
+        </div>
+
+        <div class="question-card" id="card-q29">
+          <p class="question-stem">Question 29. What does Trung's family often do on Sunday afternoon?</p>
+          <div class="options-grid full-width">
+            <label class="option-label"><input type="radio" name="q29" value="A"> A. Sit together on the balcony, drink tea, and chat</label>
+            <label class="option-label"><input type="radio" name="q29" value="B"> B. Go to the city centre to buy books</label>
+            <label class="option-label"><input type="radio" name="q29" value="C"> C. Play badminton in the schoolyard</label>
+            <label class="option-label"><input type="radio" name="q29" value="D"> D. Cook lunch in the school canteen</label>
+          </div>
+          <div class="feedback-msg" id="fb-q29"></div>
+        </div>
+
+        <div class="question-card" id="card-q30">
+          <p class="question-stem">Question 30. Which of the following is NOT true according to the passage?</p>
+          <div class="options-grid full-width">
+            <label class="option-label"><input type="radio" name="q30" value="A"> A. Trung lives in a country house in a green valley.</label>
+            <label class="option-label"><input type="radio" name="q30" value="B"> B. From his desk, Trung can see the quiet mountains.</label>
+            <label class="option-label"><input type="radio" name="q30" value="C"> C. Trung's family lives in a noisy apartment in a big city.</label>
+            <label class="option-label"><input type="radio" name="q30" value="D"> D. Trung loves his home very much.</label>
+          </div>
+          <div class="feedback-msg" id="fb-q30"></div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION D: WRITING ================= -->
+      <section>
+        <div class="section-title">D. WRITING (2.5 pts - 0.25 pt / câu)</div>
+
+        <div class="part-title">Part 1. Find and correct the mistake: Choose the underlined part (A, B, C or D) that is incorrect.</div>
+
+        <div class="question-card" id="card-q31">
+          <p class="question-stem">Question 31. Look! (A) The boy (B) <u>are playing</u> judo (C) with his brother (D).</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q31" value="A"> A. Look!</label>
+            <label class="option-label"><input type="radio" name="q31" value="B"> B. The boy</label>
+            <label class="option-label"><input type="radio" name="q31" value="C"> C. are playing judo</label>
+            <label class="option-label"><input type="radio" name="q31" value="D"> D. with his brother</label>
+          </div>
+          <div class="feedback-msg" id="fb-q31"></div>
+        </div>
+
+        <div class="question-card" id="card-q32">
+          <p class="question-stem">Question 32. There <u>are</u> (A) a big television (B) and two armchairs (C) in our living room (D).</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q32" value="A"> A. are</label>
+            <label class="option-label"><input type="radio" name="q32" value="B"> B. a big television</label>
+            <label class="option-label"><input type="radio" name="q32" value="C"> C. and two armchairs</label>
+            <label class="option-label"><input type="radio" name="q32" value="D"> D. in our living room</label>
+          </div>
+          <div class="feedback-msg" id="fb-q32"></div>
+        </div>
+
+        <div class="question-card" id="card-q33">
+          <p class="question-stem">Question 33. How many (A) <u>student</u> (B) are there (C) in your classroom (D)?</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q33" value="A"> A. How many</label>
+            <label class="option-label"><input type="radio" name="q33" value="B"> B. student</label>
+            <label class="option-label"><input type="radio" name="q33" value="C"> C. are there</label>
+            <label class="option-label"><input type="radio" name="q33" value="D"> D. in your classroom</label>
+          </div>
+          <div class="feedback-msg" id="fb-q33"></div>
+        </div>
+
+        <div class="question-card" id="card-q34">
+          <p class="question-stem">Question 34. My sister is (A) very help (B) and she often (C) cleans the house (D).</p>
+          <div class="options-grid">
+            <label class="option-label"><input type="radio" name="q34" value="A"> A. is</label>
+            <label class="option-label"><input type="radio" name="q34" value="B"> B. help</label>
+            <label class="option-label"><input type="radio" name="q34" value="C"> C. and she often</label>
+            <label class="option-label"><input type="radio" name="q34" value="D"> D. cleans the house</label>
+          </div>
+          <div class="feedback-msg" id="fb-q34"></div>
+        </div>
+
+        <div class="part-title">Part 2. Rewrite each sentence without changing its meaning.</div>
+
+        <div class="question-card" id="card-q35">
+          <p class="question-stem">Question 35. The teacher's desk is in front of the blackboard.</p>
+          <p style="color: var(--muted); font-size: 0.92rem;">Gợi ý bắt đầu bằng: <strong>The blackboard</strong></p>
+          <div class="text-input-wrap">
+            <input type="text" class="writing-input" id="input-q35" placeholder="Nhập câu viết lại hoàn chỉnh...">
+          </div>
+          <div class="feedback-msg" id="fb-q35"></div>
+        </div>
+
+        <div class="question-card" id="card-q36">
+          <p class="question-stem">Question 36. Our school has twenty classrooms.</p>
+          <p style="color: var(--muted); font-size: 0.92rem;">Gợi ý bắt đầu bằng: <strong>There are</strong></p>
+          <div class="text-input-wrap">
+            <input type="text" class="writing-input" id="input-q36" placeholder="Nhập câu viết lại hoàn chỉnh...">
+          </div>
+          <div class="feedback-msg" id="fb-q36"></div>
+        </div>
+
+        <div class="question-card" id="card-q37">
+          <p class="question-stem">Question 37. This is Nam’s schoolbag and it is on the chair.</p>
+          <p style="color: var(--muted); font-size: 0.92rem;">Gợi ý bắt đầu bằng: <strong>Nam's schoolbag</strong></p>
+          <div class="text-input-wrap">
+            <input type="text" class="writing-input" id="input-q37" placeholder="Nhập câu viết lại hoàn chỉnh...">
+          </div>
+          <div class="feedback-msg" id="fb-q37"></div>
+        </div>
+
+        <div class="part-title">Part 3. Rearrange the given words to make complete sentences.</div>
+
+        <div class="question-card" id="card-q38">
+          <p class="question-stem">Question 38. reading/ Lan/ books/ is/ in/ library/ now/ the/ ./</p>
+          <div class="text-input-wrap">
+            <input type="text" class="writing-input" id="input-q38" placeholder="Nhập câu sắp xếp hoàn chỉnh...">
+          </div>
+          <div class="feedback-msg" id="fb-q38"></div>
+        </div>
+
+        <div class="question-card" id="card-q39">
+          <p class="question-stem">Question 39. Phong/ generous/ is/ because/ shares/ he/ his friends/ with/ food/ ./</p>
+          <div class="text-input-wrap">
+            <input type="text" class="writing-input" id="input-q39" placeholder="Nhập câu sắp xếp hoàn chỉnh...">
+          </div>
+          <div class="feedback-msg" id="fb-q39"></div>
+        </div>
+
+        <div class="question-card" id="card-q40">
+          <p class="question-stem">Question 40. playing/ What/ badminton/ about/ park/ the/ in/ ?/</p>
+          <div class="text-input-wrap">
+            <input type="text" class="writing-input" id="input-q40" placeholder="Nhập câu sắp xếp hoàn chỉnh...">
+          </div>
+          <div class="feedback-msg" id="fb-q40"></div>
+        </div>
+      </section>
+
+    </form>
+
+    <!-- SECTION: TRANSCRIPT & REFERENCE -->
+    <section style="margin-top: 40px; border-top: 2px dashed var(--border); padding-top: 24px;">
+      <h3 style="color: var(--primary); margin-bottom: 12px;">Tài liệu tham khảo thêm (Listening Script & Lời giải)</h3>
+
+      <details>
+        <summary>Bài nghe (Audio Transcript) & Bản dịch chi tiết Đề 2</summary>
+        <div class="details-inner">
+          <h4 style="color: var(--secondary); margin-bottom: 6px;">Part 1. Minh and Sarah - After-school clubs</h4>
+          <p><span class="speaker">Minh:</span> Hi Sarah, what are you doing this Tuesday afternoon?</p>
+          <p class="translation">Chào Sarah, chiều thứ Ba này bạn làm gì?</p>
+          <p><span class="speaker">Sarah:</span> Hi Minh. I usually play badminton with my sister at the sports centre.</p>
+          <p class="translation">Chào Minh. Mình thường chơi cầu lông với em gái ở trung tâm thể thao.</p>
+          <p><span class="speaker">Minh:</span> Oh, that's fun. I am going to join the English Club on Tuesday afternoon. Do you want to join with me?</p>
+          <p class="translation">Ồ, vui đấy. Mình sẽ tham gia câu lạc bộ tiếng Anh vào chiều thứ Ba. Bạn có muốn tham gia cùng không?</p>
+          <p><span class="speaker">Sarah:</span> I'd love to! And do you remember our judo practice on Thursday?</p>
+          <p class="translation">Mình rất thích! Và bạn có nhớ buổi tập judo vào thứ Năm không?</p>
+          <p><span class="speaker">Minh:</span> Yes, it starts at 4.30 pm in the gym.</p>
+          <p class="translation">Có chứ, buổi tập bắt đầu lúc 4 giờ 30 chiều ở nhà thể chất.</p>
+          <p><span class="speaker">Sarah:</span> Perfect. And this Sunday, let's have a barbecue in the park!</p>
+          <p class="translation">Tuyệt vời. Và Chủ nhật này, hãy cùng tổ chức tiệc nướng ở công viên nhé!</p>
+          <p><span class="speaker">Minh:</span> Sounds great! See you then.</p>
+          <p class="translation">Nghe tuyệt đấy! Hẹn gặp lại bạn.</p>
+
+          <hr style="margin: 16px 0; border: none; border-top: 1px solid var(--border);">
+
+          <h4 style="color: var(--secondary); margin-bottom: 6px;">Part 2. David and Elena - School conversation</h4>
+          <p><span class="speaker">David:</span> Hi Elena, what are you doing right now?</p>
+          <p class="translation">Chào Elena, bạn đang làm gì đấy?</p>
+          <p><span class="speaker">Elena:</span> Hi David. I am reading storybooks. My brother is at the gym. He is very sporty and loves judo.</p>
+          <p class="translation">Chào David. Mình đang đọc sách truyện. Anh trai mình đang ở phòng tập. Anh ấy rất thích thể thao và thích judo.</p>
+          <p><span class="speaker">David:</span> That's cool. I am doing my science homework in the library now.</p>
+          <p class="translation">Tuyệt thế. Mình đang làm bài tập khoa học ở thư viện đây.</p>
+          <p><span class="speaker">Elena:</span> Do you want to visit my house this weekend? I live in a country house with a big garden.</p>
+          <p class="translation">Cuối tuần này bạn muốn đến thăm nhà mình không? Mình sống trong một ngôi nhà ở quê với khu vườn rộng lớn.</p>
+          <p><span class="speaker">David:</span> Yes, I'd love to! But right now, what about having lunch in the school canteen?</p>
+          <p class="translation">Có chứ, mình rất thích! Nhưng bây giờ, ăn trưa ở căng tin trường thì sao?</p>
+          <p><span class="speaker">Elena:</span> Good idea! Let's go together.</p>
+          <p class="translation">Ý hay đấy! Chúng mình cùng đi nào.</p>
+        </div>
+      </details>
+    </section>
+
+  </div>
+
+  <script>
+    const answerKey = {
+      q1: { answer: "B", explain: "Minh nói: 'I am going to join the English Club on Tuesday afternoon.'" },
+      q2: { answer: "B", explain: "Sarah nói: 'I usually play badminton with my sister at the sports centre.'" },
+      q3: { answer: "B", explain: "Minh xác nhận: 'Yes, it starts at 4.30 pm in the gym.'" },
+      q4: { answer: "A", explain: "Sarah đề nghị: 'And this Sunday, let's have a barbecue in the park!'" },
+      q5: { answer: "T", explain: "Elena nói rõ: 'My brother... is very sporty and loves judo.'" },
+      q6: { answer: "T", explain: "David nói: 'I am doing my science homework in the library now.'" },
+      q7: { answer: "T", explain: "Elena nói: 'I live in a country house with a big garden.'" },
+      q8: { answer: "T", explain: "David rủ 'What about having lunch in the school canteen?' và Elena đồng ý." },
+      q9: { answer: "C", explain: "Đuôi '-s' trong 'clocks' phát âm là /s/; 'windows, rooms, gardens' phát âm là /z/." },
+      q10: { answer: "A", explain: "Chữ 'y' trong 'shy' phát âm là /aɪ/; trong 'city, busy, friendly' là âm /i/." },
+      q11: { answer: "C", explain: "'polite' nhấn trọng âm 2 (/pəˈlaɪt/); 'helpful, sporty, modern' nhấn trọng âm 1." },
+      q12: { answer: "C", explain: "Cụm miêu tả tóc: 'short black hair' (mái tóc đen ngắn)." },
+      q13: { answer: "B", explain: "Dấu hiệu 'Listen!' -> Hiện tại tiếp diễn. Chủ ngữ số ít 'Someone' đi với 'is playing'." },
+      q14: { answer: "A", explain: "Cấu trúc There is/There are: danh từ kế tiếp là số ít 'a big clock' -> dùng 'There is'." },
+      q15: { answer: "B", explain: "Người luôn nói 'please' và 'thank you' là người lịch sự -> 'polite'." },
+      q16: { answer: "C", explain: "Môn cầu lông đi với động từ 'play': 'play badminton'." },
+      q17: { answer: "A", explain: "Peter viết: 'I am doing judo with Phong at the sports centre now' -> tập judo với bạn." },
+      q18: { answer: "C", explain: "Biển báo cấm điện thoại: 'Students are not allowed to use mobile phones in the classroom'." },
+      q19: { answer: "A", explain: "'clever' (thông minh, lanh lợi) đồng nghĩa với 'intelligent'." },
+      q20: { answer: "C", explain: "'quiet' (yên tĩnh) trái nghĩa với 'noisy' (ồn ào, náo nhiệt)." },
+      q21: { answer: "A", explain: "Cụm miêu tả ngoại hình: 'short curly black hair' (tóc đen xoăn ngắn)." },
+      q22: { answer: "B", explain: "Tạo ra các bức tranh và mô hình độc đáo -> 'creative' (sáng tạo)." },
+      q23: { answer: "C", explain: "Dấu hiệu 'Right now', chủ ngữ số nhiều 'Nam and I' -> 'are doing'." },
+      q24: { answer: "B", explain: "Đi với giới từ 'to' chỉ vị trí kế bên: 'next to'." },
+      q25: { answer: "B", explain: "Thì hiện tại đơn diễn tả thói quen, chủ ngữ 'he' -> 'reads'." },
+      q26: { answer: "B", explain: "Đoạn văn viết: 'with my parents and younger sister'." },
+      q27: { answer: "C", explain: "Đoạn văn viết: 'a large garden with colourful flowers and apple trees'." },
+      q28: { answer: "B", explain: "Đoạn văn nêu: 'right in front of a big window'." },
+      q29: { answer: "A", explain: "Chi tiết: 'sits together on the balcony, drinks tea, and chats happily'." },
+      q30: { answer: "C", explain: "Trung sống ở 'a country house in a green valley', không phải ở thành phố ồn ào." },
+      q31: { answer: "C", explain: "Chủ ngữ số ít 'The boy' phải đi với 'is doing judo' (động từ đúng là 'do judo', không dùng 'play'). Sửa thành: 'is doing judo'." },
+      q32: { answer: "A", explain: "Sau 'There' danh từ liền kề là 'a big television' (số ít) nên sửa 'are' thành 'is'." },
+      q33: { answer: "B", explain: "Sau 'How many' phải dùng danh từ số nhiều đếm được -> sửa 'student' thành 'students'." },
+      q34: { answer: "B", explain: "Sau 'is very' cần một tính từ -> sửa 'help' thành 'helpful'." },
+
+      q35: {
+        exact: "The blackboard is behind the teacher's desk.",
+        validate: (str) => {
+          const norm = normalize(str);
+          return norm === normalize("The blackboard is behind the teachers desk") ||
+                 norm === normalize("The blackboard is behind the teachers desk.");
+        },
+        explain: "Bàn giáo viên ở trước bảng đen -> Bảng đen ở phía sau bàn giáo viên: 'The blackboard is behind the teacher's desk.'"
+      },
+      q36: {
+        exact: "There are twenty classrooms in our school.",
+        validate: (str) => {
+          const norm = normalize(str);
+          return norm === normalize("There are twenty classrooms in our school") ||
+                 norm === normalize("There are twenty classrooms in our school.");
+        },
+        explain: "Viết lại với 'There are' (số nhiều): 'There are twenty classrooms in our school.'"
+      },
+      q37: {
+        exact: "Nam's schoolbag is on the chair.",
+        validate: (str) => {
+          const norm = normalize(str);
+          return norm === normalize("Nams schoolbag is on the chair") ||
+                 norm === normalize("Nams schoolbag is on the chair.");
+        },
+        explain: "Rút gọn thành: 'Nam's schoolbag is on the chair.'"
+      },
+      q38: {
+        exact: "Lan is reading books in the library now.",
+        validate: (str) => {
+          const norm = normalize(str);
+          return norm === normalize("Lan is reading books in the library now") ||
+                 norm === normalize("Lan is reading books in the library now.") ||
+                 norm === normalize("Now Lan is reading books in the library") ||
+                 norm === normalize("Now Lan is reading books in the library.");
+        },
+        explain: "Sắp xếp: 'Lan is reading books in the library now.'"
+      },
+      q39: {
+        exact: "Phong is generous because he shares food with his friends.",
+        validate: (str) => {
+          const norm = normalize(str);
+          return norm === normalize("Phong is generous because he shares food with his friends") ||
+                 norm === normalize("Phong is generous because he shares food with his friends.");
+        },
+        explain: "Sắp xếp: 'Phong is generous because he shares food with his friends.'"
+      },
+      q40: {
+        exact: "What about playing badminton in the park?",
+        validate: (str) => {
+          const norm = normalize(str);
+          return norm === normalize("What about playing badminton in the park") ||
+                 norm === normalize("What about playing badminton in the park?");
+        },
+        explain: "Cấu trúc gợi ý 'What about + V-ing': 'What about playing badminton in the park?'"
+      }
+    };
+
+    function normalize(text) {
+      return (text || "")
+        .toLowerCase()
+        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?']/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    document.querySelectorAll('.option-label input[type="radio"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const name = this.name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+          r.closest('.option-label').classList.remove('selected');
+        });
+        this.closest('.option-label').classList.add('selected');
+        updateProgress();
+      });
+    });
+
+    document.querySelectorAll('.writing-input').forEach(input => {
+      input.addEventListener('input', updateProgress);
+    });
+
+    function updateProgress() {
+      let answered = 0;
+      for (let i = 1; i <= 34; i++) {
+        const checked = document.querySelector(`input[name="q${i}"]:checked`);
+        const card = document.getElementById(`card-q${i}`);
+        if (checked) {
+          answered++;
+          card.classList.add('answered');
+        } else {
+          card.classList.remove('answered');
+        }
+      }
+      for (let i = 35; i <= 40; i++) {
+        const val = document.getElementById(`input-q${i}`).value.trim();
+        const card = document.getElementById(`card-q${i}`);
+        if (val.length > 0) {
+          answered++;
+          card.classList.add('answered');
+        } else {
+          card.classList.remove('answered');
+        }
+      }
+      document.getElementById('progressCount').textContent = `Đã làm: ${answered}/40 câu`;
+    }
+
+    function gradeTest() {
+      let correctCount = 0;
+      const totalQuestions = 40;
+
+      for (let i = 1; i <= 34; i++) {
+        const qKey = `q${i}`;
+        const card = document.getElementById(`card-${qKey}`);
+        const fb = document.getElementById(`fb-${qKey}`);
+        const checked = document.querySelector(`input[name="${qKey}"]:checked`);
+        const userAns = checked ? checked.value : null;
+        const correctAns = answerKey[qKey].answer;
+
+        fb.classList.remove('is-correct', 'is-wrong');
+        card.classList.remove('correct', 'wrong');
+
+        if (userAns === correctAns) {
+          correctCount++;
+          card.classList.add('correct');
+          fb.classList.add('show', 'is-correct');
+          fb.innerHTML = `<strong>Chính xác!</strong> ${answerKey[qKey].explain}`;
+        } else {
+          card.classList.add('wrong');
+          fb.classList.add('show', 'is-wrong');
+          const ansText = (userAns ? `Em chọn: <b>${userAns}</b>.` : 'Em chưa chọn đáp án.');
+          fb.innerHTML = `<strong>Chưa đúng!</strong> ${ansText} Đáp án đúng: <b>${correctAns}</b>.<br>${answerKey[qKey].explain}`;
+        }
+      }
+
+      for (let i = 35; i <= 40; i++) {
+        const qKey = `q${i}`;
+        const card = document.getElementById(`card-${qKey}`);
+        const fb = document.getElementById(`fb-${qKey}`);
+        const userVal = document.getElementById(`input-${qKey}`).value;
+        const isCorrect = answerKey[qKey].validate(userVal);
+
+        fb.classList.remove('is-correct', 'is-wrong');
+        card.classList.remove('correct', 'wrong');
+
+        if (isCorrect) {
+          correctCount++;
+          card.classList.add('correct');
+          fb.classList.add('show', 'is-correct');
+          fb.innerHTML = `<strong>Chính xác!</strong> Câu trả lời chuẩn: <em>"${answerKey[qKey].exact}"</em>`;
+        } else {
+          card.classList.add('wrong');
+          fb.classList.add('show', 'is-wrong');
+          fb.innerHTML = `<strong>Chưa đúng!</strong><br>Đáp án gợi ý: <b>${answerKey[qKey].exact}</b><br><em>${answerKey[qKey].explain}</em>`;
+        }
+      }
+
+      const finalScore = (correctCount * 0.25).toFixed(2);
+      const percentage = Math.round((correctCount / totalQuestions) * 100);
+
+      document.getElementById('scoreDisplay').textContent = `${finalScore} / 10`;
+      document.getElementById('correctCount').textContent = `Số câu đúng: ${correctCount} / ${totalQuestions}`;
+      document.getElementById('percentageDisplay').textContent = `Đạt: ${percentage}%`;
+      const banner = document.getElementById('resultBanner');
+      banner.classList.add('active');
+
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetTest() {
+      if (!confirm("Em có chắc chắn muốn làm lại từ đầu không? Toàn bộ câu trả lời sẽ được xóa.")) {
+        return;
+      }
+      document.getElementById('quizForm').reset();
+      document.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+      document.querySelectorAll('.question-card').forEach(c => c.classList.remove('answered', 'correct', 'wrong'));
+      document.querySelectorAll('.feedback-msg').forEach(f => {
+        f.classList.remove('show', 'is-correct', 'is-wrong');
+        f.innerHTML = '';
+      });
+      document.getElementById('resultBanner').classList.remove('active');
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
